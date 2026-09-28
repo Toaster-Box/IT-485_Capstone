@@ -1,7 +1,34 @@
 /* Global styles */
-
+nav{
+    padding-left: 4vw;
+    padding-right: 4vw;
+}
+footer{
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
 
 /* Header */
-#Overide{
-    background-color: blueviolet;
+#navbar{
+    background-color: whitesmoke;
+}
+
+/* body */
+
+/* Footer */
+footer{
+    background-color: rgb(20, 31, 63);
+    color: white;
+}
+
+footer h5{
+    color: lightskyblue;
+}
+
+footer p, footer ul{ /* might want to media query this, harder to read on small screens */
+    font-size: small;
+}
+#copyright{
+    font-size: xx-small;
+    color: grey;
 }
