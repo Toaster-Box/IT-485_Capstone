@@ -1,0 +1,73 @@
+/* Css here is for checklist.html only */
+ 
+/* Page title */
+#checklistTitle{
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+ 
+/* Progress card */
+#progressCard{
+    margin-bottom: 1.5rem;
+}
+.progress{
+    height: 1.5rem;
+}
+.progress-bar{
+    background-color: seagreen;
+}
+ 
+/* Checklist header row (title + Add button) */
+#checklistHeaderRow{
+    margin-bottom: 1rem;
+}
+ 
+/* Accordion section subtitle, shown under "Before Baby" / "After Baby" */
+.section-subtitle{
+    display: block;
+    font-size: small;
+    font-weight: normal;
+    color: grey;
+}
+ 
+/* Individual checklist row */
+.checklist-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.checklist-row-actions{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+ 
+/* Sidebar cards */
+#savedResourcesCard, #needMoreInfoCard{
+    margin-bottom: 1.5rem;
+}
+.saved-resource-link{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-top: 1px solid rgb(222, 226, 230);
+}
+.saved-resource-link:first-of-type{
+    border-top: none;
+}
+ 
+/* Mobile: stack checklist row contents instead of squeezing them */
+@media (max-width: 575.98px){
+    .checklist-row{
+        align-items: flex-start;
+    }
+    .checklist-row-actions{
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+ 

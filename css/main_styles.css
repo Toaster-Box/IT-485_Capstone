@@ -33,4 +33,63 @@ footer p, footer ul{ /* might want to media query this, harder to read on small 
 #copyright{
     font-size: xx-small;
     color: grey;
+}}
+/* Css here is for all pages to share */ 
+/* Global styles */
+nav{
+    padding-left: 4vw;
+    padding-right: 4vw;
 }
+footer{
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+ 
+/* Header */
+#navbar{
+    background-color: whitesmoke;
+}
+ 
+/* body */
+ 
+/* Footer */
+footer{
+    background-color: rgb(20, 31, 63);
+    color: white;
+}
+ 
+footer h5{
+    color: lightskyblue;
+}
+ 
+footer p, footer ul{ /* might want to media query this, harder to read on small screens */
+    font-size: small;
+}
+#copyright{
+    font-size: xx-small;
+    color: grey;
+}
+ 
+/* Category badges — used on Find Services, resource pages, and My Checklist,
+   so they live here instead of a page-specific stylesheet */
+.badge-healthcare{
+    background-color: rgb(252, 221, 229);
+    color: rgb(166, 30, 77);
+}
+.badge-benefits{
+    background-color: rgb(212, 237, 218);
+    color: rgb(30, 110, 60);
+}
+.badge-parental{
+    background-color: rgb(231, 217, 250);
+    color: rgb(99, 48, 168);
+}
+.badge-childcare{
+    background-color: rgb(252, 234, 198);
+    color: rgb(150, 100, 10);
+}
+.badge-immigrant{
+    background-color: rgb(205, 228, 250);
+    color: rgb(20, 90, 160);
+}
+ 
