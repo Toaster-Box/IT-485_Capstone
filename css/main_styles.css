@@ -4,6 +4,7 @@
 nav{
     padding-left: 4vw;
     padding-right: 4vw;
+    border-bottom: 3px, grey;
 }
 footer{
     padding-left: 5vw;
@@ -34,40 +35,8 @@ footer p, footer ul{ /* might want to media query this, harder to read on small 
     font-size: xx-small;
     color: grey;
 }
-/* Css here is for all pages to share */ 
-/* Global styles */
-nav{
-    padding-left: 4vw;
-    padding-right: 4vw;
-}
-footer{
-    padding-left: 5vw;
-    padding-right: 5vw;
-}
- 
-/* Header */
-#navbar{
-    background-color: whitesmoke;
-}
- 
-/* body */
- 
-/* Footer */
-footer{
-    background-color: rgb(20, 31, 63);
-    color: white;
-}
- 
-footer h5{
-    color: lightskyblue;
-}
- 
-footer p, footer ul{ /* might want to media query this, harder to read on small screens */
-    font-size: small;
-}
-#copyright{
-    font-size: xx-small;
-    color: grey;
+#copyrightRight{
+    text-align: right;
 }
  
 /* Category badges — used on Find Services, resource pages, and My Checklist,
