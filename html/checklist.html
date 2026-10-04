@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link href="/css/main_styles.css" rel="stylesheet" type="text/css">
+        <link href="/css/checklist.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="#">
+        <title>Parent Path My Checklist</title>
+    </head>
+<body>
+    <header>
+        <!-- navbar, shared across all pages, responsive -->
+        <!-- NOTE: this page is login-mandatory, so "My Checklist" only shows once a teammate wires up auth -->
+        <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" id="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/index.html">
+                    <img src="#" alt="">
+                    Parent Path
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0 flex-grow-1 justify-content-center">
+                        <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Find Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">My Checklist</a></li>
+                    </ul>
+                    <div class="navbar-nav">
+                            <a class="nav-link d-none d-lg-block" href="#google_translate_element">EN|ES</a>
+                        <button type="button" class="btn btn-primary" id="logInButton">Log in</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- main page content goes here, aka everything unique to that page -->
+    <section class="container-fluid" id="body">
+        <!-- Page title -->
+        <div class="row" id="checklistTitle">
+            <div class="col">
+                <h1>My ParentPath</h1>
+                <p>Keep track of important resources and tasks for your family.</p>
+            </div>
+        </div>
+        <!-- Progress bar card -->
+        <div class="row">
+            <div class="col">
+                <div class="card" id="progressCard">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-sm-8">
+                                <h5 class="card-title mb-0">Your Progress</h5>
+                                <p class="text-muted small mb-2 mb-sm-0">4 of 12 tasks completed</p>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="progress" role="progressbar" aria-label="Checklist progress" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar" id="checklistProgressBar" style="width: 33%">33%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Checklist + sidebar -->
+        <div class="row">
+            <!-- Main checklist column -->
+            <div class="col-12 col-lg-8">
+                <div class="d-flex justify-content-between align-items-center" id="checklistHeaderRow">
+                    <h2>My Checklist</h2>
+                    <button type="button" class="btn btn-primary btn-sm">+ Add Checklist Item</button>
+                </div>
+
+                <div class="accordion" id="checklistAccordion">
+
+                    <!-- Before Baby section -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#beforeBabyCollapse" aria-expanded="true" aria-controls="beforeBabyCollapse">
+                                Before Baby
+                                <span class="section-subtitle">Get prepared for baby's arrival</span>
+                            </button>
+                        </h3>
+                        <div id="beforeBabyCollapse" class="accordion-collapse collapse show" data-bs-parent="#checklistAccordion">
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" checked id="item1">
+                                        <label class="form-check-label" for="item1">Explore healthcare resources</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-healthcare">Healthcare &amp; Health Insurance</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" checked id="item2">
+                                        <label class="form-check-label" for="item2">Look into WIC nutrition programs</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-benefits">Benefits &amp; Financial Assistance</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item3">
+                                        <label class="form-check-label" for="item3">Review parental leave information</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-parental">Parental Leave &amp; Workplace Support</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item4">
+                                        <label class="form-check-label" for="item4">Research childcare options</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-childcare">Childcare &amp; Education</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item5">
+                                        <label class="form-check-label" for="item5">Explore financial assistance programs</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-benefits">Benefits &amp; Financial Assistance</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item6">
+                                        <label class="form-check-label" for="item6">Learn about newborn care resources</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-healthcare">Healthcare &amp; Health Insurance</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- After Baby section -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#afterBabyCollapse" aria-expanded="true" aria-controls="afterBabyCollapse">
+                                After Baby
+                                <span class="section-subtitle">Resources and tasks after your child arrives</span>
+                            </button>
+                        </h3>
+                        <div id="afterBabyCollapse" class="accordion-collapse collapse show" data-bs-parent="#checklistAccordion">
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" checked id="item7">
+                                        <label class="form-check-label" for="item7">Apply for health insurance</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-healthcare">Healthcare &amp; Health Insurance</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" checked id="item8">
+                                        <label class="form-check-label" for="item8">Attend 2-6 week checkup</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-healthcare">Healthcare &amp; Health Insurance</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item9">
+                                        <label class="form-check-label" for="item9">Explore childcare financial assistance</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-childcare">Childcare &amp; Education</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item10">
+                                        <label class="form-check-label" for="item10">Review early education programs</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-childcare">Childcare &amp; Education</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item11">
+                                        <label class="form-check-label" for="item11">Look into food assistance programs</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-benefits">Benefits &amp; Financial Assistance</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item checklist-row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="item12">
+                                        <label class="form-check-label" for="item12">Explore immigration and family support services</label>
+                                    </div>
+                                    <div class="checklist-row-actions">
+                                        <span class="badge badge-immigrant">Immigrant &amp; Language Services</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">⋮</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#">Remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Sidebar column -->
+            <div class="col-12 col-lg-4">
+
+                <div class="card" id="savedResourcesCard">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Saved Resources</h5>
+                            <a href="#" class="small">View All &gt;</a>
+                        </div>
+                        <p class="text-muted small">Your bookmarked resources from Find Services.</p>
+
+                        <a href="#" class="saved-resource-link">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-1 fw-semibold">Massachusetts PFML</p>
+                                    <span class="badge badge-parental">Parental Leave &amp; Workplace Support</span>
+                                </div>
+                                <span>&gt;</span>
+                            </div>
+                        </a>
+
+                        <a href="#" class="saved-resource-link">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-1 fw-semibold">WIC Nutrition Program</p>
+                                    <span class="badge badge-benefits">Benefits &amp; Financial Assistance</span>
+                                </div>
+                                <span>&gt;</span>
+                            </div>
+                        </a>
+
+                        <a href="#" class="saved-resource-link">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-1 fw-semibold">Child Care Financial Assistance</p>
+                                    <span class="badge badge-childcare">Childcare &amp; Education</span>
+                                </div>
+                                <span>&gt;</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" id="needMoreInfoCard">
+                    <div class="card-body">
+                        <h5 class="card-title">Need more information?</h5>
+                        <p class="text-muted small">Explore our full list of services to find more information and referrals to fit your needs.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm w-100">Find Services &gt;</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- footer, shared across all pages, responsive -->
+    <footer class="containter-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <h4>Parent Path</h4>
+                <p>Helping Massachusetts families find the support they need</p>
+            </div>
+            <div class="col-sm">
+                <h5>Explore</h5>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Find Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h5>Helpful Links</h5>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/">Mass.gov</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/orgs/masshealth">MassHealth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/orgs/department-of-early-education-and-care">Department of Early Education and Care</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/orgs/department-of-transitional-assistance">Department of Transitional Assistance</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h5>Get In Touch</h5>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <img src="#" alt="">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <img src="#" alt="">
+                        <a class="nav-link" href="#">Take Our Survey</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h5>Language</h5>
+                <div class="" id="google_translate_element"></div>
+            </div>
+        </div>
+        <div class="row fs-6 fw-lighter" id="copyright">
+            <div class="col-sm">
+                ©2026 ParentPath. All rights reserved
+            </div>
+            <div class="col-sm justify-content-end">
+                Built with care for Massachusetts families
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="/JavaScript/google_translate.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
