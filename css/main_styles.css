@@ -33,7 +33,7 @@ footer p, footer ul{ /* might want to media query this, harder to read on small 
 #copyright{
     font-size: xx-small;
     color: grey;
-}}
+}
 /* Css here is for all pages to share */ 
 /* Global styles */
 nav{
