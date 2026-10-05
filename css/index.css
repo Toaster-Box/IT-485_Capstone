@@ -1,1 +1,28 @@
 /* Css here is for index.html only */
+#body{
+    padding-bottom: 2rem;
+}
+.greyFrontPage{
+    background-color: lightgray;
+}
+.card-icon{
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+#logoLanding{
+    padding-top: 5rem;
+}
+.row{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.card{
+    width: 18rem;
+    height: 13rem;
+}
+.card-link{
+    text-decoration: none;
+}
+#commonResources{
+    text-decoration: none;
+}
