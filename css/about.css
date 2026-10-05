@@ -1,0 +1,46 @@
+/* About Page */
+.about-page {
+    padding: 2rem 5vw 2.5rem;
+}
+
+.about-page h1 {
+    font-size: 2.5rem;
+}
+
+.about-subtitle {
+    color: #595959;
+}
+
+/* About Cards */
+.about-card {
+    padding: 1.25rem;
+    border: 1px solid #aaa;
+}
+
+.about-card h2 {
+    font-size: 1.25rem;
+}
+
+.about-card p,
+.about-card ul {
+    color: #595959;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* About Lists */
+.about-list {
+    padding-left: 1rem;
+}
+
+/* Icons */
+.about-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: #dedede;
+    font-size: 1.5rem;
+}
+
+.info-selection {
+    background-color: #f0f0f0;
+}
