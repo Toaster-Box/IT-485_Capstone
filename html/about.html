@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+        <link href="../css/main_styles.css" rel="stylesheet" type="text/css">
+        <link href="../css/about.css" rel="stylesheet" type="text/css">
+        <meta name="description" content="Learn about ParentPath's mission, who we serve, and how we select information for Massachusetts families.">
+        <title>About ParentPath</title>
+    </head>
+<body>
+    <header>
+        <!-- navbar, shared across all pages, responsive -->
+        <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" id="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    Parent Path
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0 flex-grow-1 justify-content-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><span class="nav-link disabled" aria-disabled="true" title="Page not yet available">Find Services</span></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                            
+                    </ul>
+                    <div class="navbar-nav">
+                            <a class="nav-link d-none d-lg-block" href="#google_translate_element">EN|ES</a>
+                        <button type="button" class="btn btn-primary" id="logInButton" disabled title="Log in is not yet available">Log in</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="container-fluid about-page" id="body">
+        <h1 class="fw-bold mb-2">About ParentPath</h1>
+        <p class="about-subtitle mb-4">Helping Massachusetts families find the resources and support they need.</p>
+        <!-- Bootstrap row for the four cards -->
+        <div class="row g-3">
+
+            <!-- Mission -->
+            <div class="col-12 col-md-6">
+                <section class="about-card rounded-3 h-100 d-flex gap-3">
+                    <span class="about-icon d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle" aria-hidden="true"><i class="bi bi-bullseye"></i></span>
+                    <div>
+                        <h2 class="fw-bold mb-2">Our Mission</h2>
+                        <p class="mb-0">To make it easier for expecting parents and families in Massachusetts to find trusted information about government programs and community resources, so they can spend less time searching and more time focusing on what matters most — their families.</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Who We Serve -->
+            <div class="col-12 col-md-6">
+                <section class="about-card rounded-3 h-100 d-flex gap-3">
+                    <span class="about-icon d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle" aria-hidden="true"><i class="bi bi-people"></i></span>
+                    <div>
+                        <h2 class="fw-bold mb-2">Who We Serve</h2>
+                        <ul class="about-list mb-0">
+                            <li>Expecting parents</li>
+                            <li>Parents and caregivers</li>
+                            <li>Guardians and family members</li>
+                            <li>Adults seeking child and family resources in Massachusetts</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- What We Do -->
+            <div class="col-12 col-md-6">
+                <section class="about-card rounded-3 h-100 d-flex gap-3">
+                    <span class="about-icon d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle" aria-hidden="true"><i class="bi bi-geo-alt"></i></span>
+                    <div>
+                        <h2 class="fw-bold mb-2">What We Do</h2>
+                        <ul class="check-list list-unstyled mb-0">
+                            <li class="d-flex gap-2"><i class="bi bi-check" aria-hidden="true"></i>Help families discover Massachusetts resources</li>
+                            <li class="d-flex gap-2"><i class="bi bi-check" aria-hidden="true"></i>Explain programs and services in clear language</li>
+                            <li class="d-flex gap-2"><i class="bi bi-check" aria-hidden="true"></i>Connect users with trusted official sources</li>
+                            <li class="d-flex gap-2"><i class="bi bi-check" aria-hidden="true"></i>Let users save helpful resources for later</li>
+                            <li class="d-flex gap-2"><i class="bi bi-check" aria-hidden="true"></i>Help parents organize important tasks with a personal checklist</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- What We Don’t Do -->
+            <div class="col-12 col-md-6">
+                <section class="about-card rounded-3 h-100 d-flex gap-3">
+                    <span class="about-icon d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle" aria-hidden="true"><i class="bi bi-slash-circle"></i></span>
+                    <div>
+                        <h2 class="fw-bold mb-2">What We Don’t Do</h2>
+                        <ul class="about-list mb-0">
+                            <li>We do not determine eligibility for any programs.</li>
+                            <li>We do not process applications.</li>
+                            <li>We are not an official government website.</li>
+                            <li>Always verify current program details with the linked official source.</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Information Section -->  
+        <section class="about-card rounded-3 info-selection d-flex gap-3 mt-4">
+            <span class="about-icon d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle" aria-hidden="true"><i class="bi bi-file-earmark-text"></i></span>
+            <div>
+                <h2 class="fw-bold mb-2">How Information Is Selected</h2>
+                <p class="mb-0">We research and compile information from official Massachusetts government websites and trusted organizations. We also consider feedback from our community through surveys to better understand the needs of families across the state.</p>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- footer, shared across all pages, responsive -->
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <h4>Parent Path</h4>
+                <p>Helping Massachusetts families find the support they need</p>
+            </div>
+            <div class="col-sm">
+                <h5>Explore</h5>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><span class="nav-link text-white-50" aria-disabled="true" title="Page not yet available">Find Services</span></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h5>Helpful Links</h5>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/">Mass.gov</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/orgs/masshealth">MassHealth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/orgs/department-of-early-education-and-care">Department of Early Education and Care</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.mass.gov/orgs/department-of-transitional-assistance">Department of Transitional Assistance</a></li>
+                    <li class="nav-item"><span class="nav-link text-white-50" aria-disabled="true" title="Page not yet available">Privacy Policy</span></li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h5>Get In Touch</h5>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <span class="nav-link text-white-50" aria-disabled="true" title="Contact details not yet available">Contact Us</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link text-white-50" aria-disabled="true" title="Survey not yet available">Take Our Survey</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h5>Language</h5>
+                <div class="" id="google_translate_element"></div>
+            </div>
+        </div>
+        <div class="row fs-6 fw-lighter" id="copyright">
+            <div class="col-sm">
+                ©2026 ParentPath. All rights reserved
+            </div>
+            <div class="col-sm justify-content-end">
+                Built with care for Massachusetts families
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="../JavaScript/google_translate.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
