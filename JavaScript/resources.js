@@ -1,0 +1,1 @@
+/* script to load resources info based on what is passed in the link */
