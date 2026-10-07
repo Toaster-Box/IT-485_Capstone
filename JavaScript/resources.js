@@ -1,1 +1,3 @@
-/* script to load resources info based on what is passed in the link */
+/* script to load resources info based on what is passed in the link 
+Reads from a JSON file to create an object that is then parsed into the relevent page content
+*/
