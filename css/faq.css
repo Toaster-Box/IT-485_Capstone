@@ -48,8 +48,3 @@
     font-size: 1.5rem;
 }
 
-/* Matches index's row spacing only inside the footer. */
-footer .row {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
