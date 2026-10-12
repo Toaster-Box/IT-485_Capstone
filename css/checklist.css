@@ -1,73 +1,62 @@
-/* Css here is for checklist.html only */
- 
-/* Page title */
-#checklistTitle{
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+/* My ParentPath (Checklist) */
+.checklist-page {
+    padding: 2rem 5vw 2.5rem;
 }
- 
-/* Progress card */
-#progressCard{
-    margin-bottom: 1.5rem;
+.checklist-subtitle {
+    color: #595959;
 }
-.progress{
+
+/* Progress */
+.progress-card {
+    border: 1px solid #aaa;
+    background-color: white;
+}
+#progressTrack {
+    min-width: 12rem;
     height: 1.5rem;
 }
-.progress-bar{
+#progressBar {
+    width: 0%;
     background-color: seagreen;
 }
- 
-/* Checklist header row (title + Add button) */
-#checklistHeaderRow{
-    margin-bottom: 1rem;
+
+/* Checklist sections (same accordion look as the FAQ page) */
+.checklist-list {
+    --bs-accordion-border-color: #aaa;
+    --bs-accordion-btn-padding-x: 1rem;
+    --bs-accordion-btn-padding-y: 1rem;
 }
- 
-/* Accordion section subtitle, shown under "Before Baby" / "After Baby" */
-.section-subtitle{
+.checklist-list .accordion-item {
+    border: 1px solid var(--bs-accordion-border-color);
+}
+.accordion-button {
+    background-color: white;
+}
+.accordion-button:not(.collapsed) {
+    background-color: #cfe2ff;
+    color: #0a3875;
+    box-shadow: none;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+.section-subtitle {
     display: block;
-    font-size: small;
+    font-size: 0.875rem;
     font-weight: normal;
-    color: grey;
+    color: #595959;
 }
- 
-/* Individual checklist row */
-.checklist-row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+
+/* Sidebar */
+.saved-note {
+    color: #595959;
+    font-size: 0.875rem;
 }
-.checklist-row-actions{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
- 
-/* Sidebar cards */
-#savedResourcesCard, #needMoreInfoCard{
-    margin-bottom: 1.5rem;
-}
-.saved-resource-link{
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    border-top: 1px solid rgb(222, 226, 230);
-}
-.saved-resource-link:first-of-type{
-    border-top: none;
-}
- 
-/* Mobile: stack checklist row contents instead of squeezing them */
-@media (max-width: 575.98px){
-    .checklist-row{
-        align-items: flex-start;
-    }
-    .checklist-row-actions{
+
+/* Stack the badge under the task name on small screens */
+@media (max-width: 575.98px) {
+    .task-actions {
         width: 100%;
         justify-content: space-between;
     }
 }
- 
