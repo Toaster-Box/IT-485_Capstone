@@ -21,6 +21,9 @@ async function loadJSON(file) {
     document.getElementById("ResourceHelpInfo").innerText = resourceData.whatItHelps;
     document.getElementById("ResourceImportInfo").innerText = resourceData.whatToKnow;
     
+    //
+    document.getElementById("ResourceLink").href = resourceData.link;
+    
     // Related information
     document.getElementById("ResourceRelatedExplanation1").innerText = resourceData.relatedLinkExplanation[0];
     document.getElementById("ResourceRelatedLink1").href = resourceData.relatedLink[0];
@@ -32,6 +35,10 @@ async function loadJSON(file) {
     document.getElementById("ResourceRelatedLink4").href = resourceData.relatedLink[3];
     document.getElementById("ResourceRelatedExplanation5").innerText = resourceData.relatedLinkExplanation[4];
     document.getElementById("ResourceRelatedLink5").href = resourceData.relatedLink[4];
+    
+    //Updated date
+    document.getElementById("ResourceLastUpdated").innerText = resourceData.lastUpdated;
+
 
     
   }
