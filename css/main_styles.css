@@ -38,6 +38,10 @@ footer p, footer ul{ /* might want to media query this, harder to read on small 
 #copyrightRight{
     text-align: right;
 }
+footer .row{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
  
 /* Category badges — used on Find Services, resource pages, and My Checklist,
    so they live here instead of a page-specific stylesheet */
