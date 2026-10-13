@@ -53,34 +53,49 @@ function setSaved(saved) {
 
 // Save Resource buttons
 function showButtonState(button, isSaved) {
+    // Skip buttons that are already correct, so updating them doesn't trigger the observer below again
+    if (button.getAttribute('aria-pressed') === String(isSaved)) {
+        return;
+    }
     button.setAttribute('aria-pressed', isSaved);
     button.classList.toggle('active', isSaved);
     button.querySelector('i').className = isSaved ? 'bi bi-bookmark-fill' : 'bi bi-bookmark';
     button.querySelector('span').textContent = isSaved ? 'Saved' : 'Save Resource';
 }
 
-document.querySelectorAll('.save-resource-button').forEach((button) => {
-    const id = button.dataset.id;
-    showButtonState(button, getSaved().some((item) => item.id === id));
-
-    button.addEventListener('click', () => {
-        const saved = getSaved();
-        const isSaved = saved.some((item) => item.id === id);
-
-        if (isSaved) {
-            setSaved(saved.filter((item) => item.id !== id));
-        } else {
-            saved.push({
-                id: id,
-                name: button.dataset.name,
-                category: button.dataset.category,
-                url: button.dataset.url
-            });
-            setSaved(saved);
-        }
-        showButtonState(button, !isSaved);
+// Shows Saved or Save Resource on every button, including cards added to the page later
+function syncSaveButtons() {
+    const savedIds = getSaved().map((item) => item.id);
+    document.querySelectorAll('.save-resource-button').forEach((button) => {
+        showButtonState(button, savedIds.includes(button.dataset.id));
     });
+}
+
+document.addEventListener('click', (event) => {
+    const button = event.target.closest('.save-resource-button');
+    if (!button) {
+        return;
+    }
+    const saved = getSaved();
+    const isSaved = saved.some((item) => item.id === button.dataset.id);
+
+    if (isSaved) {
+        setSaved(saved.filter((item) => item.id !== button.dataset.id));
+    } else {
+        saved.push({
+            id: button.dataset.id,
+            name: button.dataset.name,
+            category: button.dataset.category,
+            url: button.dataset.url
+        });
+        setSaved(saved);
+    }
+    syncSaveButtons();
 });
+
+// Resource cards that are added by JavaScript after the page loads get their state too
+new MutationObserver(syncSaveButtons).observe(document.body, { childList: true, subtree: true });
+syncSaveButtons();
 
 // Everything below only runs on My ParentPath
 function startChecklist() {
