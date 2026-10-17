@@ -63,6 +63,19 @@ function showButtonState(button, isSaved) {
     button.querySelector('span').textContent = isSaved ? 'Saved' : 'Save Resource';
 }
 
+// Only allows normal page links (with or without ?query), so a saved link can never run code
+function safeUrl(url) {
+    try {
+        const parsed = new URL(url, document.baseURI);
+        if (['http:', 'https:', location.protocol].includes(parsed.protocol)) {
+            return url;
+        }
+    } catch (error) {
+        // Not a usable link
+    }
+    return '#';
+}
+
 // Shows Saved or Save Resource on every button, including cards added to the page later
 function syncSaveButtons() {
     const savedIds = getSaved().map((item) => item.id);
@@ -93,8 +106,8 @@ document.addEventListener('click', (event) => {
     syncSaveButtons();
 });
 
-// Resource cards that are added by JavaScript after the page loads get their state too
-new MutationObserver(syncSaveButtons).observe(document.body, { childList: true, subtree: true });
+// Cards added by JavaScript after the page loads (or buttons whose data-id is filled in later) get their state too
+new MutationObserver(syncSaveButtons).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-id'] });
 syncSaveButtons();
 
 // Everything below only runs on My ParentPath
@@ -109,6 +122,8 @@ function startChecklist() {
     const progressBar = document.getElementById('progressBar');
     const progressTrack = document.getElementById('progressTrack');
     const addTaskButton = document.getElementById('addTaskButton');
+    const downloadTextButton = document.getElementById('downloadTextButton');
+    const printButton = document.getElementById('printButton');
     const taskForm = document.getElementById('taskForm');
     const taskText = document.getElementById('taskText');
     const taskCategory = document.getElementById('taskCategory');
@@ -156,7 +171,7 @@ function startChecklist() {
                 </div>
                 <div class="task-actions d-flex align-items-center gap-2">
                     <span class="badge badge-${task.category}">${escapeHtml(categoryNames[task.category])}</span>
-                    <div class="dropdown">
+                    <div class="dropdown d-print-none">
                         <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Task options for ${escapeHtml(task.text)}">
                             <i class="bi bi-three-dots-vertical" aria-hidden="true"></i>
                         </button>
@@ -229,6 +244,59 @@ function startChecklist() {
         taskModal.show();
     }
 
+    // Builds a plain text copy of the checklist and saves it to the user's device
+    function buildChecklistText() {
+        const done = tasks.filter((task) => task.done).length;
+        const percent = tasks.length === 0 ? 0 : Math.round((done / tasks.length) * 100);
+        const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const sections = [['beforeBaby', 'BEFORE BABY'], ['afterBaby', 'AFTER BABY']];
+        const lines = ['MY PARENTPATH CHECKLIST', `Saved on ${today}`, '', `Progress: ${done} of ${tasks.length} tasks completed (${percent}%)`];
+
+        sections.forEach(([section, title]) => {
+            lines.push('', title);
+            const sectionTasks = tasks.filter((task) => task.section === section);
+            if (sectionTasks.length === 0) {
+                lines.push('(no tasks)');
+            }
+            sectionTasks.forEach((task) => {
+                lines.push(`[${task.done ? 'x' : ' '}] ${task.text} (${categoryNames[task.category]})`);
+            });
+        });
+
+        const saved = getSaved();
+        lines.push('', 'SAVED RESOURCES');
+        if (saved.length === 0) {
+            lines.push('(none saved)');
+        }
+        saved.forEach((item) => {
+            const label = categoryNames[item.category] ? ` (${categoryNames[item.category]})` : '';
+            // Links are written out in full so they still work outside the website
+            const url = safeUrl(item.url);
+            const address = url === '#' ? '' : new URL(url, document.baseURI).href;
+            const link = /^https?:/i.test(address) ? ` - ${address}` : '';
+            lines.push(`- ${item.name}${label}${link}`);
+        });
+
+        lines.push('', 'ParentPath is not an official government website.', 'Always check program details with the official source.');
+        return lines.join('\r\n');
+    }
+
+    downloadTextButton.addEventListener('click', () => {
+        const file = new Blob([buildChecklistText()], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(file);
+        link.download = 'my-parentpath-checklist.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(link.href);
+    });
+
+    // Print dialog also lets the user choose Save as PDF
+    printButton.addEventListener('click', () => {
+        window.print();
+    });
+
     addTaskButton.addEventListener('click', () => {
         openModal(null);
     });
@@ -264,13 +332,8 @@ function startChecklist() {
     });
 
     // Saved resources (added with the Save Resource buttons on other pages)
-    // Only allows normal page links, so a saved link can never run code
-    function safeUrl(url) {
-        return /^(https?:\/\/|[\w./-]+\.html)/i.test(url || '') ? url : '#';
-    }
-
     function renderSaved() {
-        const saved = getSaved().filter((item) => categoryNames[item.category]);
+        const saved = getSaved();
         if (saved.length === 0) {
             savedList.innerHTML = '<p class="saved-empty mb-0">No saved resources yet. Browse <a href="find-services.html">Find Services</a> and use Save Resource to bookmark them here.</p>';
             return;
@@ -279,9 +342,9 @@ function startChecklist() {
             <div class="list-group-item d-flex justify-content-between align-items-center gap-2 px-0 py-3">
                 <a class="saved-link text-decoration-none flex-grow-1" href="${escapeHtml(safeUrl(item.url))}">
                     <span class="d-block fw-semibold mb-1">${escapeHtml(item.name)}</span>
-                    <span class="badge badge-${item.category}">${escapeHtml(categoryNames[item.category])}</span>
+                    ${categoryNames[item.category] ? `<span class="badge badge-${item.category}">${escapeHtml(categoryNames[item.category])}</span>` : ''}
                 </a>
-                <button class="btn btn-sm btn-link text-muted" type="button" data-remove-saved="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from saved resources">
+                <button class="btn btn-sm btn-link text-muted d-print-none" type="button" data-remove-saved="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from saved resources">
                     <i class="bi bi-x-lg" aria-hidden="true"></i>
                 </button>
             </div>`).join('');
