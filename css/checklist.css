@@ -48,6 +48,13 @@
 }
 
 /* Sidebar */
+.saved-link {
+    color: inherit;
+}
+.saved-empty {
+    color: #595959;
+    font-size: 0.875rem;
+}
 .saved-note {
     color: #595959;
     font-size: 0.875rem;
@@ -58,5 +65,28 @@
     .task-actions {
         width: 100%;
         justify-content: space-between;
+    }
+}
+
+/* Printing: open every section so the whole checklist is on the page */
+@media print {
+    .checklist-page {
+        padding: 0;
+    }
+    .accordion-collapse.collapse:not(.show),
+    .accordion-collapse.collapsing {
+        display: block;
+        height: auto;
+    }
+    #progressBar,
+    .badge {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    .accordion-button::after {
+        display: none;
+    }
+    .accordion-item {
+        break-inside: avoid;
     }
 }

@@ -109,6 +109,8 @@ function startChecklist() {
     const progressBar = document.getElementById('progressBar');
     const progressTrack = document.getElementById('progressTrack');
     const addTaskButton = document.getElementById('addTaskButton');
+    const downloadTextButton = document.getElementById('downloadTextButton');
+    const printButton = document.getElementById('printButton');
     const taskForm = document.getElementById('taskForm');
     const taskText = document.getElementById('taskText');
     const taskCategory = document.getElementById('taskCategory');
@@ -156,7 +158,7 @@ function startChecklist() {
                 </div>
                 <div class="task-actions d-flex align-items-center gap-2">
                     <span class="badge badge-${task.category}">${escapeHtml(categoryNames[task.category])}</span>
-                    <div class="dropdown">
+                    <div class="dropdown d-print-none">
                         <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Task options for ${escapeHtml(task.text)}">
                             <i class="bi bi-three-dots-vertical" aria-hidden="true"></i>
                         </button>
@@ -229,6 +231,56 @@ function startChecklist() {
         taskModal.show();
     }
 
+    // Builds a plain text copy of the checklist and saves it to the user's device
+    function buildChecklistText() {
+        const done = tasks.filter((task) => task.done).length;
+        const percent = tasks.length === 0 ? 0 : Math.round((done / tasks.length) * 100);
+        const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const sections = [['beforeBaby', 'BEFORE BABY'], ['afterBaby', 'AFTER BABY']];
+        const lines = ['MY PARENTPATH CHECKLIST', `Saved on ${today}`, '', `Progress: ${done} of ${tasks.length} tasks completed (${percent}%)`];
+
+        sections.forEach(([section, title]) => {
+            lines.push('', title);
+            const sectionTasks = tasks.filter((task) => task.section === section);
+            if (sectionTasks.length === 0) {
+                lines.push('(no tasks)');
+            }
+            sectionTasks.forEach((task) => {
+                lines.push(`[${task.done ? 'x' : ' '}] ${task.text} (${categoryNames[task.category]})`);
+            });
+        });
+
+        const saved = getSaved().filter((item) => categoryNames[item.category]);
+        lines.push('', 'SAVED RESOURCES');
+        if (saved.length === 0) {
+            lines.push('(none saved)');
+        }
+        saved.forEach((item) => {
+            // Only full web addresses are useful outside the website
+            const link = /^https?:\/\//i.test(item.url || '') ? ` - ${item.url}` : '';
+            lines.push(`- ${item.name} (${categoryNames[item.category]})${link}`);
+        });
+
+        lines.push('', 'ParentPath is not an official government website.', 'Always check program details with the official source.');
+        return lines.join('\r\n');
+    }
+
+    downloadTextButton.addEventListener('click', () => {
+        const file = new Blob([buildChecklistText()], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(file);
+        link.download = 'my-parentpath-checklist.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(link.href);
+    });
+
+    // Print dialog also lets the user choose Save as PDF
+    printButton.addEventListener('click', () => {
+        window.print();
+    });
+
     addTaskButton.addEventListener('click', () => {
         openModal(null);
     });
@@ -281,7 +333,7 @@ function startChecklist() {
                     <span class="d-block fw-semibold mb-1">${escapeHtml(item.name)}</span>
                     <span class="badge badge-${item.category}">${escapeHtml(categoryNames[item.category])}</span>
                 </a>
-                <button class="btn btn-sm btn-link text-muted" type="button" data-remove-saved="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from saved resources">
+                <button class="btn btn-sm btn-link text-muted d-print-none" type="button" data-remove-saved="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from saved resources">
                     <i class="bi bi-x-lg" aria-hidden="true"></i>
                 </button>
             </div>`).join('');
