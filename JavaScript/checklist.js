@@ -63,6 +63,19 @@ function showButtonState(button, isSaved) {
     button.querySelector('span').textContent = isSaved ? 'Saved' : 'Save Resource';
 }
 
+// Only allows normal page links (with or without ?query), so a saved link can never run code
+function safeUrl(url) {
+    try {
+        const parsed = new URL(url, document.baseURI);
+        if (['http:', 'https:', location.protocol].includes(parsed.protocol)) {
+            return url;
+        }
+    } catch (error) {
+        // Not a usable link
+    }
+    return '#';
+}
+
 // Shows Saved or Save Resource on every button, including cards added to the page later
 function syncSaveButtons() {
     const savedIds = getSaved().map((item) => item.id);
@@ -93,8 +106,8 @@ document.addEventListener('click', (event) => {
     syncSaveButtons();
 });
 
-// Resource cards that are added by JavaScript after the page loads get their state too
-new MutationObserver(syncSaveButtons).observe(document.body, { childList: true, subtree: true });
+// Cards added by JavaScript after the page loads (or buttons whose data-id is filled in later) get their state too
+new MutationObserver(syncSaveButtons).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-id'] });
 syncSaveButtons();
 
 // Everything below only runs on My ParentPath
@@ -250,15 +263,18 @@ function startChecklist() {
             });
         });
 
-        const saved = getSaved().filter((item) => categoryNames[item.category]);
+        const saved = getSaved();
         lines.push('', 'SAVED RESOURCES');
         if (saved.length === 0) {
             lines.push('(none saved)');
         }
         saved.forEach((item) => {
-            // Only full web addresses are useful outside the website
-            const link = /^https?:\/\//i.test(item.url || '') ? ` - ${item.url}` : '';
-            lines.push(`- ${item.name} (${categoryNames[item.category]})${link}`);
+            const label = categoryNames[item.category] ? ` (${categoryNames[item.category]})` : '';
+            // Links are written out in full so they still work outside the website
+            const url = safeUrl(item.url);
+            const address = url === '#' ? '' : new URL(url, document.baseURI).href;
+            const link = /^https?:/i.test(address) ? ` - ${address}` : '';
+            lines.push(`- ${item.name}${label}${link}`);
         });
 
         lines.push('', 'ParentPath is not an official government website.', 'Always check program details with the official source.');
@@ -316,13 +332,8 @@ function startChecklist() {
     });
 
     // Saved resources (added with the Save Resource buttons on other pages)
-    // Only allows normal page links, so a saved link can never run code
-    function safeUrl(url) {
-        return /^(https?:\/\/|[\w./-]+\.html)/i.test(url || '') ? url : '#';
-    }
-
     function renderSaved() {
-        const saved = getSaved().filter((item) => categoryNames[item.category]);
+        const saved = getSaved();
         if (saved.length === 0) {
             savedList.innerHTML = '<p class="saved-empty mb-0">No saved resources yet. Browse <a href="find-services.html">Find Services</a> and use Save Resource to bookmark them here.</p>';
             return;
@@ -331,7 +342,7 @@ function startChecklist() {
             <div class="list-group-item d-flex justify-content-between align-items-center gap-2 px-0 py-3">
                 <a class="saved-link text-decoration-none flex-grow-1" href="${escapeHtml(safeUrl(item.url))}">
                     <span class="d-block fw-semibold mb-1">${escapeHtml(item.name)}</span>
-                    <span class="badge badge-${item.category}">${escapeHtml(categoryNames[item.category])}</span>
+                    ${categoryNames[item.category] ? `<span class="badge badge-${item.category}">${escapeHtml(categoryNames[item.category])}</span>` : ''}
                 </a>
                 <button class="btn btn-sm btn-link text-muted d-print-none" type="button" data-remove-saved="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from saved resources">
                     <i class="bi bi-x-lg" aria-hidden="true"></i>
