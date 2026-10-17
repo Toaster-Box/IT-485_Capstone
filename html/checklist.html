@@ -11,7 +11,7 @@
         <title>My ParentPath | ParentPath</title>
     </head>
 <body>
-    <header>
+    <header class="d-print-none">
         <!-- navbar, shared across all pages, responsive -->
         <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" id="navbar">
             <div class="container-fluid">
@@ -56,9 +56,18 @@
         <div class="row g-4">
             <!-- Checklist -->
             <div class="col-12 col-lg-8">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
                     <h2 class="fs-2 fw-bold mb-0">My Checklist</h2>
-                    <button type="button" class="btn btn-primary btn-sm" id="addTaskButton"><i class="bi bi-plus-lg" aria-hidden="true"></i> Add Checklist Item</button>
+                    <div class="d-flex flex-wrap gap-2 d-print-none">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download" aria-hidden="true"></i> Download</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item" type="button" id="downloadTextButton">Text file (.txt)</button></li>
+                                <li><button class="dropdown-item" type="button" id="printButton">Print or save as PDF</button></li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm" id="addTaskButton"><i class="bi bi-plus-lg" aria-hidden="true"></i> Add Checklist Item</button>
+                    </div>
                 </div>
 
                 <div class="accordion checklist-list" id="checklistAccordion">
@@ -102,7 +111,7 @@
                     </div>
                 </section>
 
-                <section class="card rounded-3 mb-4">
+                <section class="card rounded-3 mb-4 d-print-none">
                     <div class="card-body p-4">
                         <h2 class="fs-4 fw-bold mb-2">Need more information?</h2>
                         <p class="saved-note">Explore our full list of services to find more information and referrals to fit your needs.</p>
@@ -153,7 +162,7 @@
     </div>
 
     <!-- footer, shared across all pages, responsive -->
-    <footer class="container-fluid">
+    <footer class="container-fluid d-print-none">
         <div class="row">
             <div class="col-sm">
                 <h4>Parent Path</h4>
