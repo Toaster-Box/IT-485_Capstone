@@ -1,5 +1,6 @@
 /* Css here is for index.html only */
-#body{
+/* find out some way to add padding to the left hand side */
+#body{ 
     padding-bottom: 2rem;
 }
 .greyFrontPage{
@@ -11,10 +12,6 @@
 }
 #logoLanding{
     padding-top: 5rem;
-}
-.row{
-    padding-top: 1rem;
-    padding-bottom: 1rem;
 }
 .card{
     width: 18rem;
